@@ -1,64 +1,131 @@
-import Image from "next/image";
+import Hero from "./components/Hero";
+import ArticleCard from "./components/ArticleCard";
+import RankingsTable from "./components/RankingsTable";
+import billionaires from "../data/billionaires.json";
+import Intro from "./components/Intro";
+
+const SITE_URL = "https://www.list-of-billionaires.com";
+
+export const metadata = {
+  title: "World's Billionaires List 2026 | Richest People in the World",
+  description:
+    "Explore the complete 2026 list of the world's richest billionaires. Discover rankings, net worth, industries, and countries of the wealthiest people on Earth.",
+  keywords: [
+    "world billionaires list",
+    "richest people in the world",
+    "billionaire rankings",
+    "top billionaires 2026",
+    "net worth billionaires"
+  ],
+  openGraph: {
+    title: "World's Billionaires List 2026",
+    description:
+      "Discover the richest billionaires in the world with rankings, wealth data, and profiles.",
+    url: SITE_URL,
+    siteName: "List of Billionaires",
+    images: [
+      {
+        url: `${SITE_URL}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "World's Billionaires List",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "World's Billionaires List 2026",
+    description:
+      "Explore the richest billionaires in the world with rankings and wealth insights.",
+    images: [`${SITE_URL}/og-image.jpg`],
+  },
+  alternates: {
+    canonical: SITE_URL,
+  },
+};
+
+const sampleArticles = [
+  {
+    title:
+      "Bill Ackman in Special Interview: “Evil Fears Strong Leadership – and We Are Going to Get Particularly Strong Leadership”",
+    href: "#",
+    image: "/billionaires/julio.webp",
+    description:
+      "In a candid conversation, billionaire investor Bill Ackman shares his insights on leadership and the future economy.",
+  },
+  {
+    title:
+      "Jerry Seinfeld: The Comedian Who Became a Leading Voice Against Antisemitism",
+    href: "#",
+    image: "/billionaires/julio.webp",
+    description:
+      "Jerry Seinfeld has emerged as a strong advocate against antisemitism, using his global influence to promote tolerance.",
+  },
+  {
+    title:
+      "Miriam Adelson: The Wealthiest Israeli Woman and One of the World's Richest Women",
+    href: "#",
+    image: "/billionaires/julio.webp",
+    description:
+      "Miriam Adelson, widow of Sheldon Adelson, is one of the richest women in the world.",
+  },
+];
 
 export default function Home() {
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "World's Billionaires List 2026",
+    description:
+      "Explore the richest billionaires in the world with rankings, net worth, industries and profiles.",
+    url: SITE_URL,
+    mainEntity: {
+      "@type": "ItemList",
+      name: "World Billionaires Rankings",
+      itemListElement: billionaires.slice(0, 10).map((person, index) => ({
+        "@type": "Person",
+        position: index + 1,
+        name: person.Name,
+        nationality: person.Country,
+        netWorth: {
+          "@type": "MonetaryAmount",
+          currency: "USD",
+          value: person.Net_Worth_USD_Billion,
+        },
+      })),
+    },
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <div className="font-sans text-gray-900 text-white">
+
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <Hero />
+      <Intro />
+
+      <main className="max-w-6xl mx-auto px-4 py-12">
+
+        <section className="grid gap-6 md:grid-cols-3">
+          {sampleArticles.map((a, idx) => (
+            <ArticleCard key={idx} {...a} />
+          ))}
+        </section>
+
+        <section className="mt-12">
+          <h2 className="text-2xl font-bold mb-4">
+            2026 World’s Billionaires
+          </h2>
+
+          <RankingsTable data={billionaires} />
+        </section>
+
       </main>
     </div>
   );
