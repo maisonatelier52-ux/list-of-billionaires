@@ -28,6 +28,7 @@ function slugify(text) {
 }
 
 const quickLinks = [
+  { label: "Fictional Characters", href: "/fictional" },
   { label: "About Us", href: "/about" },
   { label: "Terms of Use", href: "/terms-of-use" },
   { label: "Privacy Policy", href: "/privacy-policy" },

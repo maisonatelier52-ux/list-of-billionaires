@@ -1,0 +1,78 @@
+[
+  {
+    "slug": "tony-stark",
+    "name": "Tony Stark",
+    "alias": "Iron Man",
+    "universe": "Marvel",
+    "occupation": "Inventor, CEO, Superhero",
+    "net_worth_billion": 100,
+    "created_by": "Stan Lee, Larry Lieber, Don Heck, Jack Kirby",
+    "first_appearance": "Tales of Suspense #39 (1963)",
+    "description": "Tony Stark is a genius inventor and billionaire industrialist who builds a powered suit of armor to become the superhero Iron Man.",
+    "origin": "Tony Stark inherited Stark Industries from his father Howard Stark. After being captured during a weapons demonstration, he built the first Iron Man armor to escape captivity and later used his technology to protect the world.",
+    "source": "Stark Industries, advanced weapons manufacturing, defense technology, AI and robotics",
+    "quotes": [
+      "I am Iron Man.",
+      "Sometimes you gotta run before you can walk.",
+      "Genius, billionaire, playboy, philanthropist."
+    ],
+    "image": "/fictional/tony-stark-iorn-man.jpg"
+  },
+  {
+    "slug": "bruce-wayne",
+    "name": "Bruce Wayne",
+    "alias": "Batman",
+    "universe": "DC",
+    "occupation": "Businessman, Vigilante",
+    "net_worth_billion": 80,
+    "created_by": "Bob Kane, Bill Finger",
+    "first_appearance": "Detective Comics #27 (1939)",
+    "description": "Bruce Wayne is the billionaire owner of Wayne Enterprises who secretly fights crime in Gotham City as Batman.",
+    "origin": "After witnessing the murder of his parents as a child in Gotham City, Bruce Wayne dedicated his life to fighting crime. Using his immense fortune and advanced technology, he became the vigilante known as Batman.",
+    "source": "Wayne Enterprises, technology, defense contracts, real estate and global investments",
+    "quotes": [
+      "It's not who I am underneath, but what I do that defines me.",
+      "I am vengeance. I am the night. I am Batman.",
+      "A hero can be anyone."
+    ],
+    "image": "/fictional/bruce-wayne.jpg"
+  },
+  {
+    "slug": "scrooge-mcduck",
+    "name": "Scrooge McDuck",
+    "alias": "Uncle Scrooge",
+    "universe": "Disney",
+    "occupation": "Business Magnate",
+    "net_worth_billion": 65,
+    "created_by": "Carl Barks",
+    "first_appearance": "Christmas on Bear Mountain (1947)",
+    "description": "Scrooge McDuck is an extremely wealthy duck known for his massive fortune and his iconic money bin.",
+    "origin": "Born in Scotland to a poor family, Scrooge McDuck traveled the world as a young adventurer and built his wealth through hard work, mining, trading, and investments.",
+    "source": "Global investments, mining, shipping, treasure hunting, McDuck Enterprises",
+    "quotes": [
+      "Work smarter, not harder.",
+      "I made it by being tougher than the toughies and smarter than the smarties.",
+      "There's always another adventure!"
+    ],
+    "image": "/fictional/scrooge-mcduck.jpg"
+  },
+  {
+    "slug": "tchalla",
+    "name": "T'Challa",
+    "alias": "Black Panther",
+    "universe": "Marvel",
+    "occupation": "King of Wakanda",
+    "net_worth_billion": 500,
+    "created_by": "Stan Lee, Jack Kirby",
+    "first_appearance": "Fantastic Four #52 (1966)",
+    "description": "T'Challa is the king of Wakanda, a technologically advanced African nation rich in vibranium.",
+    "origin": "T'Challa became king of Wakanda after the death of his father T'Chaka. As ruler of the most technologically advanced nation on Earth, he protects Wakanda and the world as the Black Panther.",
+    "source": "Wakanda's vibranium reserves, advanced technology, global trade",
+    "quotes": [
+      "Wakanda forever!",
+      "A wise king never seeks out war, but he must always be ready for it.",
+      "The world is changing. Soon there will only be the conquered and the conquerors."
+    ],
+    "image": "/fictional/tchalla.jpg"
+  }
+]

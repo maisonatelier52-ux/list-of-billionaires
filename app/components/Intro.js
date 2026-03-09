@@ -5,7 +5,7 @@ import BillionairesByCountryTreemap from "./CountryTreemap";
 
 export default function BillionairesIntro() {
   return (
-    <section className="max-w-4xl mx-auto px-4 py-16 space-y-8 text-xl">
+    <section className="max-w-4xl mx-auto px-4 py-16 space-y-8 text-l">
       
       <div className="prose prose-lg max-w-none">
         <p className="first-letter:text-[64px] first-letter:font-bold first-letter:text-red-600 first-letter:float-left first-letter:leading-none first-letter:mr-2">

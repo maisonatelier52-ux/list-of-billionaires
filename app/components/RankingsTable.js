@@ -53,16 +53,16 @@ export default function RankingsTable({ data }) {
                   {person.Rank}
                 </td>
 
-                <td className="px-6 py-4 text-zinc-200">
+                <td className="px-6 py-4 font-semibold text-zinc-300">
                   <Link
                     href={`/${person.Name.toLowerCase().replace(/\s+/g, "-")}`}
-                    className="hover:text-white hover:underline"
+                    className="hover:text-white transition"
                   >
                     {person.Name}
                   </Link>
                 </td>
 
-                <td className="px-6 py-4 text-center text-zinc-300">
+                <td className="px-6 py-4 text-center font-semibold text-green-400">
                   ${person.Net_Worth_USD_Billion.toLocaleString()}
                 </td>
 
