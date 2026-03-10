@@ -29,6 +29,7 @@ function slugify(text) {
 
 const quickLinks = [
   { label: "Fictional Characters", href: "/fictional" },
+  { label: "Billionaires Ever Lived", href: "/billionaires-ever-lived" },
   { label: "About Us", href: "/about" },
   { label: "Terms of Use", href: "/terms-of-use" },
   { label: "Privacy Policy", href: "/privacy-policy" },

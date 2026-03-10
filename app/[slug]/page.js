@@ -86,47 +86,26 @@ export default async function PersonPage({ params }) {
   )
   .slice(0, 3);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: person.Name,
-    image: person.image,
-    jobTitle: "Businessperson",
-    nationality: person.Country,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: person.City,
-      addressCountry: person.Country,
-    },
-    description: `${person.Name} is ranked #${person.Rank} among the world's richest billionaires with a net worth of $${person.Net_Worth_USD_Billion} billion.`,
-    url: `${SITE_URL}/${slug}`,
-    knowsAbout: person.Industry,
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-950 via-black to-zinc-900 text-white p-6 md:p-12">
-      <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify(jsonLd),
-      }}
-    />
+    <main className="bg-black text-gray-200 min-h-screen">
 
-      {/* Back */}
-      <Link
-        href="/"
-        className="text-zinc-400 hover:text-white transition"
-      >
-        ← Back to Rankings
-      </Link>
+      {/* HERO IMAGE */}
+      <div className="w-full h-[500px] relative overflow-hidden">
+        <Image
+          src={person.image_banner}
+          alt={person.Name}
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black"></div>
+      </div>
 
-      <div className="max-w-6xl mx-auto mt-8">
+      {/* MAIN CONTENT */}
+      <div className="max-w-6xl mx-auto px-6 md:flex md:gap-12">
 
-        {/* Hero Section */}
-        <div className="grid md:grid-cols-3 gap-10 items-center">
-
-          {/* Image */}
-          <div className="relative w-full h-96 overflow-hidden shadow-2xl border border-zinc-800">
+        {/* LEFT STICKY IMAGE */}
+        <div className="md:w-1/3 mb-8 md:mb-0">
+          <div className="sticky top-28 w-64 h-96 md:h-[400px] rounded-2xl overflow-hidden shadow-lg -mt-32 border border-zinc-800">
             <Image
               src={person.image}
               alt={person.Name}
@@ -134,139 +113,113 @@ export default async function PersonPage({ params }) {
               className="object-cover"
             />
           </div>
-
-          {/* Main Info */}
-          <div className="md:col-span-2 space-y-6">
-
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold">
-                #{person.Rank} {person.Name}
-              </h1>
-              <p className="text-zinc-400 mt-2 flex items-center gap-2">
-                {person.Industry} •
-
-                <span className="flex items-center gap-2">
-                  <ReactCountryFlag
-                    countryCode={getCountryCode(person.Country)}
-                    svg
-                    style={{ width: "20px", height: "15px" }}
-                  />
-                  {person.Country}
-                </span>
-              </p>
-            </div>
-
-            {/* Wealth */}
-            <div>
-              <p className="text-3xl font-semibold text-green-400">
-                ${person.Net_Worth_USD_Billion.toLocaleString()} Billion
-              </p>
-
-              <div className="mt-4 w-full bg-zinc-800 rounded-full h-3">
-                <div
-                  className="bg-green-500 h-3 rounded-full transition-all duration-700"
-                  style={{ width: `${wealthPercent}%` }}
-                />
-              </div>
-              <p className="text-xs text-zinc-500 mt-2">
-                Compared to richest billionaire
-              </p>
-            </div>
-
-            {/* Badges */}
-            <div className="flex flex-wrap gap-3">
-              {person.Rank <= 10 && (
-                <Badge text="Top 10 Billionaire" />
-              )}
-              {person.Net_Worth_USD_Billion >= 100 && (
-                <Badge text="Centibillionaire" />
-              )}
-              <Badge text={person.Sex} />
-            </div>
-
-          </div>
         </div>
 
-        {/* Details Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mt-12">
+        {/* RIGHT CONTENT */}
+        <div className="md:w-2/3 space-y-4 -mt-32 text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]">
 
-          <InfoCard label="Age" value={person.Age} />
-          <InfoCard
-            label="City / Country"
-            value={
-              <span className="flex items-center gap-2">
-                {person.City},
-                <ReactCountryFlag
-                  countryCode={getCountryCode(person.Country)}
-                  svg
-                  style={{ width: "20px", height: "15px" }}
-                />
-                {person.Country}
-              </span>
-            }
-          />
-          <InfoCard label="Source of Wealth" value={person.Source_of_Wealth} />
-          <InfoCard label="Marital Status" value={person.Marital_Status} />
-          <InfoCard label="Children" value={person.Children} />
-          <InfoCard label="Industry" value={person.Industry} />
+          {/* NAME */}
+          <h1 className="text-5xl font-bold">
+            #{person.Rank} {person.Name}
+          </h1>
+
+          {/* INDUSTRY + COUNTRY */}
+          <p className="text-zinc-300 flex items-center gap-2">
+            {person.Industry} •
+
+            <span className="flex items-center gap-2">
+              <ReactCountryFlag
+                countryCode={getCountryCode(person.Country)}
+                svg
+                style={{ width: "20px", height: "15px" }}
+              />
+              {person.Country}
+            </span>
+          </p>
+
+          {/* Wealth */}
+          <div>
+            <p className="text-3xl font-semibold text-green-400">
+              ${person.Net_Worth_USD_Billion.toLocaleString()} Billion
+            </p>
+            <div className="mt-4 w-full bg-zinc-800 rounded-full h-3">
+              <div className="bg-green-500 h-3 rounded-full transition-all duration-700" style={{ width: `${wealthPercent}%` }} />
+            </div>
+            <p className="text-xs text-zinc-500 mt-2">
+              Compared to richest billionaire
+            </p>
+          </div>
+
+          {/* DETAILS */}
+          <div className="mt-6 space-y-1 text-zinc-300 text-sm">
+            <p><span className="font-semibold text-white">Age:</span> {person.Age}</p>
+            <p><span className="font-semibold text-white">City:</span> {person.City}</p>
+            <p><span className="font-semibold text-white">Source of Wealth:</span> {person.Source_of_Wealth}</p>
+            <p><span className="font-semibold text-white">Industry:</span> {person.Industry}</p>
+            <p><span className="font-semibold text-white">Marital Status:</span> {person.Marital_Status}</p>
+            <p><span className="font-semibold text-white">Children:</span> {person.Children}</p>
+          </div>
+
+          {/* BADGES */}
+          <div className="flex flex-wrap gap-3 mt-6">
+            {person.Rank <= 10 && <Badge text="Top 10 Billionaire" />}
+            {person.Net_Worth_USD_Billion >= 100 && <Badge text="Centibillionaire" />}
+            <Badge text={person.Sex} />
+          </div>
 
         </div>
-
-        {/* Related Section */}
-        {related.length > 0 && (
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold mb-6">
-              More from {person.Industry}
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {related.map((r) => (
-                <Link
-                  key={r.Rank}
-                  href={`/${r.slug}`}
-                  className="flex items-center justify-between bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:bg-zinc-800 transition group"
-                >
-                  {/* Left Content */}
-                  <div>
-                    <p className="font-semibold text-white">
-                      #{r.Rank} {r.Name}
-                    </p>
-                    <p className="text-sm text-zinc-400 mt-2">
-                      ${r.Net_Worth_USD_Billion}B
-                    </p>
-                  </div>
-
-                  {/* Right Image */}
-                  <div className="w-16 h-16 relative shrink-0">
-                    <img
-                      src={r.image}
-                      alt={r.Name}
-                      className="w-16 h-16 object-cover rounded-full border-2 border-zinc-700 group-hover:border-white transition"
-                    />
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-
       </div>
-    </div>
-  );
-}
 
-/* Components */
+      {/* RELATED SECTION */}
+      {related.length > 0 && (
+        <section className="mt-24 max-w-6xl px-6 mx-auto pb-10">
+          <h2 className="text-3xl font-bold text-center text-white mb-6">
+            More from {person.Industry}
+          </h2>
 
-function InfoCard({ label, value }) {
-  return (
-    <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
-      <p className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
-        {label}
-      </p>
-      <p className="text-lg font-semibold text-white">
-        {value}
-      </p>
-    </div>
+          <div className="flex justify-center gap-8">
+            {related.map((r) => (
+              <Link
+                key={r.Rank}
+                href={`/${createSlug(r.Name)}`}
+                className="relative group w-64 h-80 overflow-hidden rounded-2xl border border-zinc-800 shadow-lg"
+              >
+
+                <Image
+                  src={r.image}
+                  alt={r.Name}
+                  fill
+                  className="object-cover"
+                />
+                {/* Overlay Details Panel */}
+                <div className="absolute inset-0 bg-black/80 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 p-4 flex flex-col justify-center">
+                  <h3 className="text-white text-xl font-bold mb-2">
+                    #{r.Rank} {r.Name}
+                  </h3>
+                  <p className="text-zinc-300 text-sm"><span className="font-semibold">Age:</span> {r.Age}</p>
+                  <p className="text-zinc-300 text-sm space-x-2">
+                    <span className="font-semibold">
+                      Country:
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <ReactCountryFlag
+                        countryCode={getCountryCode(r.Country)}
+                        svg
+                        style={{ width: "20px", height: "15px" }}
+                      />
+                      {r.Country}
+                    </span>
+                  </p>
+                  <p className="text-zinc-300 text-sm py-1"><span className="font-semibold">Net Worth:</span> <span className="text-green-500 font-semibold bg-green-500/20 border border-green-500 rounded-full px-2 py-0.5">${r.Net_Worth_USD_Billion} B</span></p>
+                </div>
+
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+    </main>
   );
 }
 

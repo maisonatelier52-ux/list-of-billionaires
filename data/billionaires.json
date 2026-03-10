@@ -12,7 +12,8 @@
     "Marital_Status":"Single",
     "Children":12,
     "Sex":"Male",
-    "image":"/billionaires/elon-musk.webp"
+    "image":"/billionaires/elon-musk.webp",
+    "image_banner":"/billionaires/banner/elon-musk-banner.jpg"
   },
   {
     "Rank":2,
@@ -27,7 +28,8 @@
     "Marital_Status":"Married",
     "Children":2,
     "Sex":"Male",
-    "image":"/billionaires/larry-page.webp"
+    "image":"/billionaires/larry-page.webp",
+    "image_banner":"/billionaires/banner/larry-page-banner.jpg"
   },
   {
     "Rank":3,

@@ -16,7 +16,8 @@
       "Sometimes you gotta run before you can walk.",
       "Genius, billionaire, playboy, philanthropist."
     ],
-    "image": "/fictional/tony-stark-iorn-man.jpg"
+    "image": "/fictional/tony-stark-iorn-man.jpg",
+    "image_banner": "/fictional/iornman-banner.jpg"
   },
   {
     "slug": "bruce-wayne",
@@ -35,7 +36,8 @@
       "I am vengeance. I am the night. I am Batman.",
       "A hero can be anyone."
     ],
-    "image": "/fictional/bruce-wayne.jpg"
+    "image": "/fictional/bruce-wayne.jpg",
+    "image_banner": "/fictional/bruce-wayne-batman-banner.jpg"
   },
   {
     "slug": "scrooge-mcduck",

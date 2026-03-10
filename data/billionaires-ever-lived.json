@@ -1,0 +1,408 @@
+{
+  "billionaires": [
+    {
+      "rank": 1,
+      "slug": "mansa-musa-i",
+      "name": "Mansa Musa I",
+      "estimatedWealth": "$400–500 Billion",
+      "countryOrEmpire": "Mali Empire",
+      "era": "14th Century",
+      "image": "/ever-lived/mansa-musa.jpg",
+      "image_banner": "/ever-lived/banner/mansa-musa-1.jpg"
+    },
+    {
+      "rank": 2,
+      "slug": "john-d-rockefeller",
+      "name": "John D. Rockefeller",
+      "estimatedWealth": "$400 Billion",
+      "countryOrEmpire": "United States",
+      "era": "19th–20th Century",
+      "image": "/billionaires-ever-lived/john-d-rockefeller.jpg",
+      "image_banner": "/billionaires-ever-lived/john-d-rockefeller-banner.jpg"
+    },
+    {
+      "rank": 3,
+      "slug": "akbar-the-great",
+      "name": "Akbar the Great",
+      "estimatedWealth": "~$21 Trillion (GDP Share)",
+      "countryOrEmpire": "Mughal Empire (India)",
+      "era": "16th Century"
+    },
+    {
+      "rank": 4,
+      "slug": "andrew-carnegie",
+      "name": "Andrew Carnegie",
+      "estimatedWealth": "$310 Billion",
+      "countryOrEmpire": "United States",
+      "era": "19th Century"
+    },
+    {
+      "rank": 5,
+      "slug": "tsar-nicholas-ii",
+      "name": "Tsar Nicholas II",
+      "estimatedWealth": "$300 Billion",
+      "countryOrEmpire": "Russia",
+      "era": "Early 20th Century"
+    },
+    {
+      "rank": 6,
+      "slug": "mir-osman-ali-khan",
+      "name": "Mir Osman Ali Khan",
+      "estimatedWealth": "$230 Billion",
+      "countryOrEmpire": "Hyderabad (India)",
+      "era": "20th Century"
+    },
+    {
+      "rank": 7,
+      "slug": "william-the-conqueror",
+      "name": "William the Conqueror",
+      "estimatedWealth": "$229.5 Billion",
+      "countryOrEmpire": "England",
+      "era": "11th Century"
+    },
+    {
+      "rank": 8,
+      "slug": "jakob-fugger",
+      "name": "Jakob Fugger",
+      "estimatedWealth": "$221 Billion",
+      "countryOrEmpire": "Holy Roman Empire (Germany)",
+      "era": "15th–16th Century"
+    },
+    {
+      "rank": 9,
+      "slug": "henry-ford",
+      "name": "Henry Ford",
+      "estimatedWealth": "$200 Billion",
+      "countryOrEmpire": "United States",
+      "era": "20th Century"
+    },
+    {
+      "rank": 10,
+      "slug": "cornelius-vanderbilt",
+      "name": "Cornelius Vanderbilt",
+      "estimatedWealth": "$178 Billion",
+      "countryOrEmpire": "United States",
+      "era": "19th Century"
+    },
+    {
+      "rank": 11,
+      "slug": "alan-rufus",
+      "name": "Alan Rufus",
+      "estimatedWealth": "$178 Billion",
+      "countryOrEmpire": "England",
+      "era": "11th Century"
+    },
+    {
+      "rank": 12,
+      "slug": "rajendra-chola-i",
+      "name": "Rajendra Chola I",
+      "estimatedWealth": "$150 Billion",
+      "countryOrEmpire": "Chola Empire (India)",
+      "era": "11th Century"
+    },
+    {
+      "rank": 13,
+      "slug": "stephen-van-rensselaer",
+      "name": "Stephen Van Rensselaer",
+      "estimatedWealth": "$143 Billion",
+      "countryOrEmpire": "United States",
+      "era": "18th–19th Century"
+    },
+    {
+      "rank": 14,
+      "slug": "andrew-w-mellon",
+      "name": "Andrew W. Mellon",
+      "estimatedWealth": "$135 Billion",
+      "countryOrEmpire": "United States",
+      "era": "20th Century"
+    },
+    {
+      "rank": 15,
+      "slug": "raja-raja-chola-i",
+      "name": "Raja Raja Chola I",
+      "estimatedWealth": "$100–120 Billion",
+      "countryOrEmpire": "Chola Empire (India)",
+      "era": "10th Century"
+    },
+    {
+      "rank": 16,
+      "slug": "elon-musk",
+      "name": "Elon Musk",
+      "estimatedWealth": "~$180 Billion",
+      "countryOrEmpire": "United States",
+      "era": "21st Century"
+    },
+    {
+      "rank": 17,
+      "slug": "jeff-bezos",
+      "name": "Jeff Bezos",
+      "estimatedWealth": "~$175 Billion",
+      "countryOrEmpire": "United States",
+      "era": "21st Century"
+    },
+    {
+      "rank": 18,
+      "slug": "bill-gates",
+      "name": "Bill Gates",
+      "estimatedWealth": "~$140 Billion",
+      "countryOrEmpire": "United States",
+      "era": "21st Century"
+    },
+    {
+      "rank": 19,
+      "slug": "harsha",
+      "name": "Harsha",
+      "estimatedWealth": "$90 Billion",
+      "countryOrEmpire": "North India",
+      "era": "7th Century"
+    },
+    {
+      "rank": 20,
+      "slug": "bhoja",
+      "name": "Bhoja",
+      "estimatedWealth": "$60 Billion",
+      "countryOrEmpire": "Malwa (India)",
+      "era": "11th Century"
+    },
+    {
+      "rank": 21,
+      "slug": "chandragupta-maurya",
+      "name": "Chandragupta Maurya",
+      "estimatedWealth": "Unquantified (Empire-scale wealth)",
+      "countryOrEmpire": "Mauryan Empire (India)",
+      "era": "4th Century BCE"
+    },
+    {
+      "rank": 22,
+      "slug": "ashoka-the-great",
+      "name": "Ashoka the Great",
+      "estimatedWealth": "Unquantified (Empire-scale wealth)",
+      "countryOrEmpire": "Mauryan Empire (India)",
+      "era": "3rd Century BCE"
+    },
+    {
+      "rank": 23,
+      "slug": "genghis-khan",
+      "name": "Genghis Khan",
+      "estimatedWealth": "Unquantified (Land/loot control)",
+      "countryOrEmpire": "Mongol Empire",
+      "era": "13th Century"
+    },
+    {
+      "rank": 24,
+      "slug": "krishna-deva-raya",
+      "name": "Krishna Deva Raya",
+      "estimatedWealth": "$100–150 Billion",
+      "countryOrEmpire": "Vijayanagara Empire (India)",
+      "era": "16th Century"
+    },
+    {
+      "rank": 25,
+      "slug": "krishnadevaraya-successors",
+      "name": "Krishnadevaraya’s Successors",
+      "estimatedWealth": "$50–80 Billion",
+      "countryOrEmpire": "Vijayanagara Empire (India)",
+      "era": "16th Century"
+    },
+    {
+      "rank": 26,
+      "slug": "maharana-pratap",
+      "name": "Maharana Pratap",
+      "estimatedWealth": "$30 Billion",
+      "countryOrEmpire": "Mewar (India)",
+      "era": "16th Century"
+    },
+    {
+      "rank": 27,
+      "slug": "shivaji-maharaj",
+      "name": "Shivaji Maharaj",
+      "estimatedWealth": "$40–70 Billion",
+      "countryOrEmpire": "Maratha Empire (India)",
+      "era": "17th Century"
+    },
+    {
+      "rank": 28,
+      "slug": "peshwa-bajirao-i",
+      "name": "Peshwa Bajirao I",
+      "estimatedWealth": "$50 Billion",
+      "countryOrEmpire": "Maratha Empire (India)",
+      "era": "18th Century"
+    },
+    {
+      "rank": 29,
+      "slug": "caesar-augustus",
+      "name": "Caesar Augustus",
+      "estimatedWealth": "$4.6 Trillion (Modern Estimate)",
+      "countryOrEmpire": "Roman Empire",
+      "era": "1st Century BCE"
+    },
+    {
+      "rank": 30,
+      "slug": "maharaja-ranjit-singh",
+      "name": "Maharaja Ranjit Singh",
+      "estimatedWealth": "$40–60 Billion",
+      "countryOrEmpire": "Sikh Empire (India)",
+      "era": "19th Century"
+    },
+    {
+      "rank": 31,
+      "slug": "maharaja-sayajirao-gaekwad-iii",
+      "name": "Maharaja Sayajirao Gaekwad III",
+      "estimatedWealth": "$20–30 Billion",
+      "countryOrEmpire": "Baroda (India)",
+      "era": "19th–20th Century"
+    },
+    {
+      "rank": 32,
+      "slug": "lalitaditya-muktapida",
+      "name": "Lalitaditya Muktapida",
+      "estimatedWealth": "$25 Billion (Est.)",
+      "countryOrEmpire": "Kashmir (India)",
+      "era": "8th Century"
+    },
+    {
+      "rank": 33,
+      "slug": "maharaja-bhupinder-singh",
+      "name": "Maharaja Bhupinder Singh",
+      "estimatedWealth": "$20 Billion",
+      "countryOrEmpire": "Patiala (India)",
+      "era": "20th Century"
+    },
+    {
+      "rank": 34,
+      "slug": "yoshiaki-tsutsumi",
+      "name": "Yoshiaki Tsutsumi",
+      "estimatedWealth": "$20 Billion",
+      "countryOrEmpire": "Japan",
+      "era": "20th Century"
+    },
+    {
+      "rank": 35,
+      "slug": "j-paul-getty",
+      "name": "J. Paul Getty",
+      "estimatedWealth": "$15 Billion",
+      "countryOrEmpire": "United States",
+      "era": "20th Century"
+    },
+    {
+      "rank": 36,
+      "slug": "sergey-brin",
+      "name": "Sergey Brin",
+      "estimatedWealth": "~$100 Billion",
+      "countryOrEmpire": "United States",
+      "era": "21st Century"
+    },
+    {
+      "rank": 37,
+      "slug": "larry-page",
+      "name": "Larry Page",
+      "estimatedWealth": "~$100 Billion",
+      "countryOrEmpire": "United States",
+      "era": "21st Century"
+    },
+    {
+      "rank": 38,
+      "slug": "larry-ellison",
+      "name": "Larry Ellison",
+      "estimatedWealth": "~$130 Billion",
+      "countryOrEmpire": "United States",
+      "era": "21st Century"
+    },
+    {
+      "rank": 39,
+      "slug": "mark-zuckerberg",
+      "name": "Mark Zuckerberg",
+      "estimatedWealth": "~$110 Billion",
+      "countryOrEmpire": "United States",
+      "era": "21st Century"
+    },
+    {
+      "rank": 40,
+      "slug": "mukesh-ambani",
+      "name": "Mukesh Ambani",
+      "estimatedWealth": "~$95 Billion",
+      "countryOrEmpire": "India",
+      "era": "21st Century"
+    },
+    {
+      "rank": 41,
+      "slug": "carlos-slim",
+      "name": "Carlos Slim",
+      "estimatedWealth": "~$90 Billion",
+      "countryOrEmpire": "Mexico",
+      "era": "21st Century"
+    },
+    {
+      "rank": 42,
+      "slug": "warren-buffett",
+      "name": "Warren Buffett",
+      "estimatedWealth": "~$120 Billion",
+      "countryOrEmpire": "United States",
+      "era": "21st Century"
+    },
+    {
+      "rank": 43,
+      "slug": "augustus-ii-the-strong",
+      "name": "Augustus II the Strong",
+      "estimatedWealth": "$75 Billion",
+      "countryOrEmpire": "Poland–Lithuania / Saxony",
+      "era": "18th Century"
+    },
+    {
+      "rank": 44,
+      "slug": "friedrich-weyerhaeuser",
+      "name": "Friedrich Weyerhäuser",
+      "estimatedWealth": "$70 Billion",
+      "countryOrEmpire": "United States",
+      "era": "19th Century"
+    },
+    {
+      "rank": 45,
+      "slug": "richard-fitzalan",
+      "name": "Richard FitzAlan",
+      "estimatedWealth": "$65 Billion",
+      "countryOrEmpire": "England",
+      "era": "14th Century"
+    },
+    {
+      "rank": 46,
+      "slug": "thomas-of-lancaster",
+      "name": "Thomas of Lancaster",
+      "estimatedWealth": "$60 Billion",
+      "countryOrEmpire": "England",
+      "era": "14th Century"
+    },
+    {
+      "rank": 47,
+      "slug": "imelda-marcos",
+      "name": "Imelda Marcos",
+      "estimatedWealth": "$55 Billion",
+      "countryOrEmpire": "Philippines",
+      "era": "20th Century"
+    },
+    {
+      "rank": 48,
+      "slug": "muammar-gaddafi",
+      "name": "Muammar Gaddafi",
+      "estimatedWealth": "$50 Billion",
+      "countryOrEmpire": "Libya",
+      "era": "20th–21st Century"
+    },
+    {
+      "rank": 49,
+      "slug": "prince-al-waleed-bin-talal",
+      "name": "Prince Al-Waleed bin Talal",
+      "estimatedWealth": "$45 Billion",
+      "countryOrEmpire": "Saudi Arabia",
+      "era": "21st Century"
+    },
+    {
+      "rank": 50,
+      "slug": "jay-gould",
+      "name": "Jay Gould",
+      "estimatedWealth": "$40 Billion",
+      "countryOrEmpire": "United States",
+      "era": "19th Century"
+    }
+  ]
+}
