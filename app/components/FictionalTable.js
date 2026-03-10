@@ -29,6 +29,7 @@ export default function FictionalTable({ data }) {
               <th className="text-left px-6 py-4">Character</th>
               <th className="text-left px-6 py-4">Alias</th>
               <th className="text-left px-6 py-4">Universe</th>
+              <th className="text-left px-6 py-4">Occupation</th>
               <th className="text-right px-6 py-4">Net Worth</th>
             </tr>
           </thead>
@@ -41,7 +42,7 @@ export default function FictionalTable({ data }) {
               >
 
                 <td className="px-6 py-4 text-zinc-500 font-medium">
-                  #{startIndex + index + 1} {/* Correct rank across pages */}
+                  #{startIndex + index + 1}
                 </td>
 
                 <td className="px-6 py-4 font-semibold text-white">
@@ -59,6 +60,10 @@ export default function FictionalTable({ data }) {
 
                 <td className="px-6 py-4 text-zinc-400">
                   {character.universe}
+                </td>
+
+                <td className="px-6 py-4 text-zinc-400">
+                  {character.occupation}
                 </td>
 
                 <td className="px-6 py-4 text-right text-emerald-400 font-semibold">

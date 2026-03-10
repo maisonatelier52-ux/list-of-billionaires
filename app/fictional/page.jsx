@@ -59,7 +59,6 @@ export default function FictionalCharactersPage() {
           </p>
         </div>
 
-
         {/* BOTTOM CONTENT */}
         <div className="max-w-4xl my-7 space-y-4">
           <h2 className="text-2xl font-bold text-white">
