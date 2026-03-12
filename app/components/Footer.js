@@ -13,10 +13,19 @@ const categories = [
 ];
 
 const rankings = [
-  "USA",
-  "Female",
-  "Top 10",
-  "Youngest Billionaires"
+  { label: "USA", href: "/categories/usa" },
+  { label: "Female", href: "/categories/female" },
+  { label: "Top 10", href: "/categories/top-10" },
+  { label: "Youngest Billionaires", href: "/categories/youngest-billionaires" },
+];
+
+const continental = [
+  { label: "North America", href: "/region/north-america" },
+  { label: "Europe", href: "/region/europe" },
+  { label: "Asia", href: "/region/asia" },
+  { label: "Latin America", href: "/region/latin-america" },
+  { label: "Africa", href: "/region/africa" },
+  { label: "Oceania", href: "/region/oceania" },
 ];
 
 function slugify(text) {
@@ -78,7 +87,7 @@ export default function Footer() {
         </div>
 
         {/* BOTTOM SECTION */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 pt-10">
 
           {/* Categories */}
           <div>
@@ -105,13 +114,32 @@ export default function Footer() {
               Rankings
             </h3>
             <ul className="space-y-2 text-sm">
-              {rankings.map((rank) => (
-                <li key={rank}>
+              {rankings.map(({ label, href }) => (
+                <li key={href}>
                   <Link
-                    href={`/categories/${rank.toLowerCase()}`}
-                    className="hover:text-gray-400 transition-colors px-2 py-1 rounded"
+                    href={href}
+                    className="hover:text-gray-400 transition-colors"
                   >
-                    {rank}
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Continental Regions */}
+          <div>
+            <h3 className="font-semibold mb-4 uppercase text-sm tracking-wider">
+              Continental Regions
+            </h3>
+            <ul className="space-y-2 text-sm">
+              {continental.map(({ label, href }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="hover:text-gray-400 transition-colors"
+                  >
+                    {label}
                   </Link>
                 </li>
               ))}

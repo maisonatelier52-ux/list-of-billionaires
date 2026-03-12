@@ -67,7 +67,6 @@ export default async function CategoryPage({ params }) {
   const filteredData = data.filter((person) => {
     return (
       normalize(person.Industry) === decodedCategory ||
-      normalize(person.Country) === decodedCategory ||
       normalize(person.Sex) === decodedCategory
     );
   });

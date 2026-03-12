@@ -1,114 +1,242 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import {
-  FaMicrochip,
-  FaChartLine,
-  FaShoppingBag,
-  FaIndustry,
-  FaTruck,
-  FaMountain,
-  FaBars,
-} from "react-icons/fa";
+import { FaBars, FaTimes, FaChevronRight, FaChevronDown } from "react-icons/fa";
 
-const categories = [
-  { name: "Technology", slug: "technology", icon: FaMicrochip },
-  { name: "Finance", slug: "finance", icon: FaChartLine },
-  { name: "Fashion & Retail", slug: "fashion-and-retail", icon: FaShoppingBag },
-  { name: "Manufacturing", slug: "manufacturing", icon: FaIndustry },
-  { name: "Logistics", slug: "logistics", icon: FaTruck },
-  { name: "Metals & Mining", slug: "metals-mining", icon: FaMountain },
+const continentCountries = {
+  "north-america": ["usa", "canada", "mexico"],
+  "latin-america": ["chile", "brazil"],
+  asia: ["india", "china", "japan", "hong-kong", "israel", "indonesia"],
+  europe: [
+    "france",
+    "spain",
+    "germany",
+    "italy",
+    "austria",
+    "switzerland",
+    "uk",
+    "czechia",
+  ],
+  oceania: ["australia"],
+  africa: ["nigeria"],
+};
+
+const industries = [
+  "Technology",
+  "Finance",
+  "Fashion & Retail",
+  "Diversified",
+  "Food and Beverage",
+  "Healthcare",
+  "Manufacturing",
+  "Real Estate",
+  "Logistics",
+  "Metals and Mining",
+  "Chanel",
+  "Telecom",
+  "Automotive",
+  "Construction",
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const [hoveredContinent, setHoveredContinent] = useState(null);
+  const [submenuPos, setSubmenuPos] = useState({ top: 0 });
+  const [industryOpen, setIndustryOpen] = useState(false);
 
-  // Close when clicking outside
+  const pathname = usePathname();
+
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
-      ) {
-        setOpen(false);
-      }
-    }
+    setOpen(false);
+    setHoveredContinent(null);
+  }, [pathname]);
 
-    document.addEventListener("mousedown", handleClickOutside);
+  const SIDEBAR_WIDTH = 360;
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const handleMouseEnter = (continent, e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+
+    setHoveredContinent(continent);
+    setSubmenuPos({
+      top: rect.top,
+    });
+  };
 
   return (
-    <header className="bg-black shadow-xl sticky top-0 z-50">
-      <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+    <>
+      {/* HEADER */}
+      <header className="bg-black sticky top-0 z-50 shadow-xl">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+          <Link href="/">
+            <Image src="/logo.jpg" alt="Logo" width={120} height={100} />
+          </Link>
 
-        {/* Logo */}
-        <Link href="/" className="text-xl font-bold">
-          <Image
-            src="/logo.jpg"
-            alt="Logo"
-            width={120}
-            height={100}
-            className="inline-block"
-          />
-        </Link>
+          <button
+            onClick={() => setOpen(true)}
+            className="text-white flex items-center gap-2"
+          >
+            Menu <FaBars />
+          </button>
+        </div>
+      </header>
 
-        {/* Navigation */}
-        <nav className="flex items-center space-x-6 relative">
+      {/* OVERLAY */}
+      <div
+        onClick={() => {
+          setOpen(false);
+          setHoveredContinent(null);
+        }}
+        className={`fixed inset-0 bg-black/60 z-40 transition ${
+          open ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      />
 
-          {/* Categories Dropdown */}
-          <div className="relative" ref={dropdownRef}>
+      {/* SIDEBAR RIGHT */}
+      <aside
+        onMouseLeave={() => setHoveredContinent(null)}
+        className={`fixed top-0 right-0 w-[360px] h-full bg-zinc-950 z-50 shadow-2xl transform transition-transform duration-300 ${
+          open ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        {/* HEADER */}
+        <div className="flex justify-between items-center p-5 border-b border-zinc-800">
+          <h2 className="text-white font-semibold">Browse Categories</h2>
 
+          <button
+            onClick={() => setOpen(false)}
+            className="text-zinc-400 hover:text-white"
+          >
+            <FaTimes />
+          </button>
+        </div>
+
+        <div className="p-6 space-y-8 overflow-y-auto h-full">
+
+          {/* TYPE */}
+          <Section title="Categories">
+            <SidebarLink href="/categories/youngest-billionaires">
+              Youngest Billionaires
+            </SidebarLink>
+
+            <SidebarLink href="/categories/female">
+              Female Billionaires
+            </SidebarLink>
+          </Section>
+
+          {/* CONTINENTS */}
+          <Section title="Continental Regions">
+            {Object.keys(continentCountries).map((continent) => (
+              <div
+                key={continent}
+                onMouseEnter={(e) => handleMouseEnter(continent, e)}
+              >
+                <Link
+                  href={`/region/${continent}`}
+                  className="flex justify-between items-center text-sm text-zinc-300 hover:text-white"
+                >
+                  {formatName(continent)}
+                  <FaChevronRight className="text-xs opacity-60" />
+                </Link>
+              </div>
+            ))}
+          </Section>
+
+          {/* INDUSTRY */}
+          <Section title="Industry">
             <button
-              onClick={() => setOpen(!open)}
-              className="text-sm text-white hover:text-gray-300 transition focus:outline-none flex items-center gap-1"
+              onClick={() => setIndustryOpen(!industryOpen)}
+              className="flex justify-between items-center w-full text-sm text-zinc-300 hover:text-white"
             >
-              Categories <FaBars/>
+              All Industries
+              <FaChevronDown
+                className={`text-xs transition ${
+                  industryOpen ? "rotate-180" : ""
+                }`}
+              />
             </button>
 
-            {/* Dropdown */}
-            <div
-              className={`absolute right-0 mt-3 w-[400px] bg-zinc-900 text-white shadow-2xl p-3 transform transition-all duration-200 ${
-                open
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 -translate-y-2 pointer-events-none"
-              }`}
-            >
-              {/* Grid Layout */}
-              <div className="grid grid-cols-2 gap-1">
-                {categories.map((cat) => {
-                  const Icon = cat.icon;
-
-                  return (
-                    <Link
-                      key={cat.slug}
-                      href={`/categories/${cat.slug}`}
-                      onClick={() => setOpen(false)}
-                      className="group flex items-center gap-3 px-4 py-3 text-sm rounded-md transition-all duration-200 hover:bg-gray-600"
-                    >
-                      {/* Icon */}
-                      <Icon className="text-gray-600 group-hover:text-black transition" />
-
-                      {/* Text with slide animation */}
-                      <span className="transition-transform duration-200 group-hover:translate-x-1">
-                        {cat.name}
-                      </span>
-                    </Link>
-                  );
-                })}
+            {industryOpen && (
+              <div className="space-y-2 mt-2">
+                {industries.map((industry) => (
+                  <Link
+                    key={industry}
+                    href={`/categories/${slugify(industry)}`}
+                    className="block text-sm text-zinc-400 hover:text-white"
+                  >
+                    {industry}
+                  </Link>
+                ))}
               </div>
-            </div>
-          </div>
+            )}
+          </Section>
 
-        </nav>
-      </div>
-    </header>
+          {/* SPECIAL */}
+          <Section title="Special Lists">
+          </Section>
+
+        </div>
+      </aside>
+
+      {/* SUBMENU LEFT OF SIDEBAR */}
+      {hoveredContinent && (
+        <div
+          onMouseEnter={() => setHoveredContinent(hoveredContinent)}
+          onMouseLeave={() => setHoveredContinent(null)}
+          className="fixed z-[60] bg-zinc-950 border border-zinc-800 rounded-md shadow-xl p-4 space-y-2 w-44"
+          style={{
+            right: SIDEBAR_WIDTH,
+            top: submenuPos.top,
+          }}
+        >
+          {continentCountries[hoveredContinent].map((country) => (
+            <Link
+              key={country}
+              href={`/country/${country}`}
+              className="block text-sm text-zinc-300 hover:text-white"
+            >
+              {formatName(country)}
+            </Link>
+          ))}
+        </div>
+      )}
+    </>
   );
+}
+
+/* COMPONENTS */
+
+function Section({ title, children }) {
+  return (
+    <div>
+      <h3 className="text-xs uppercase text-zinc-500 mb-3">{title}</h3>
+      <div className="space-y-2">{children}</div>
+    </div>
+  );
+}
+
+function SidebarLink({ href, children }) {
+  return (
+    <Link
+      href={href}
+      className="block text-sm text-zinc-300 hover:text-white"
+    >
+      {children}
+    </Link>
+  );
+}
+
+/* HELPERS */
+
+function formatName(str) {
+  return str
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (l) => l.toUpperCase());
+}
+
+function slugify(str) {
+  return str.toLowerCase().replace(/\s+/g, "-");
 }
