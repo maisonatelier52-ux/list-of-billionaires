@@ -33,27 +33,9 @@ export default function BillionairesByCountryTreemap() {
     .map(([name, value]) => ({
       name,
       value,
-      totalWealth: countryWealth[name].toFixed(1), // total wealth in billions
+      totalWealth: countryWealth[name].toFixed(1),
     }))
     .sort((a, b) => b.value - a.value);
-
-  // Group "Others" if more than 12 countries
-//   if (chartData.length > 13) {
-//     const top12 = chartData.slice(0, 13);
-//     const others = chartData.slice(13);
-//     const othersTotalCount = others.reduce((sum, item) => sum + item.value, 0);
-//     const othersTotalWealth = others.reduce((sum, item) => sum + parseFloat(item.totalWealth), 0);
-
-//     chartData = [
-//       ...top12,
-//       {
-//         name: `Others (${others.length})`,
-//         value: othersTotalCount,
-//         totalWealth: othersTotalWealth.toFixed(1),
-//         isOther: true,
-//       },
-//     ];
-//   }
 
   const COLORS = [
     "#629af3", "#7b7df3", "#9d77f4", "#eb77b1",

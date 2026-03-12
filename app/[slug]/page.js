@@ -165,7 +165,20 @@ export default async function PersonPage({ params }) {
             {person.Rank <= 10 && <Badge text="Top 10 Billionaire" />}
             {person.Net_Worth_USD_Billion >= 100 && <Badge text="Centibillionaire" />}
             <Badge text={person.Sex} />
+            <Badge text={person.Continent} />
           </div>
+
+          {/* ABOUT */}
+          {person.about && (
+            <div className="mt-8">
+              <h2 className="text-2xl font-semibold text-white mb-3">
+                About {person.Name}
+              </h2>
+              <p className="text-zinc-300 leading-relaxed text-[15px]">
+                {person.about}
+              </p>
+            </div>
+          )}
 
         </div>
       </div>

@@ -28,7 +28,7 @@ const continentCountries = {
 const industries = [
   "Technology",
   "Finance",
-  "Fashion & Retail",
+  "Fashion and Retail",
   "Diversified",
   "Food and Beverage",
   "Healthcare",
@@ -36,7 +36,6 @@ const industries = [
   "Real Estate",
   "Logistics",
   "Metals and Mining",
-  "Chanel",
   "Telecom",
   "Automotive",
   "Construction",
@@ -98,7 +97,7 @@ export default function Navbar() {
       {/* SIDEBAR RIGHT */}
       <aside
         onMouseLeave={() => setHoveredContinent(null)}
-        className={`fixed top-0 right-0 w-[360px] h-full bg-zinc-950 z-50 shadow-2xl transform transition-transform duration-300 ${
+        className={`fixed top-0 right-0 w-[360px] h-screen bg-zinc-950 z-50 shadow-2xl transform transition-transform duration-300 flex flex-col ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -114,7 +113,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        <div className="p-6 space-y-8 overflow-y-auto h-full">
+        <div className="flex-1 overflow-y-auto p-6 space-y-8">
 
           {/* TYPE */}
           <Section title="Categories">
@@ -164,7 +163,7 @@ export default function Navbar() {
                 {industries.map((industry) => (
                   <Link
                     key={industry}
-                    href={`/categories/${slugify(industry)}`}
+                    href={`/industry/${slugify(industry)}`}
                     className="block text-sm text-zinc-400 hover:text-white"
                   >
                     {industry}
@@ -176,6 +175,9 @@ export default function Navbar() {
 
           {/* SPECIAL */}
           <Section title="Special Lists">
+            <SidebarLink href="/categories/philanthropists">
+              Top Philanthropists
+            </SidebarLink>
           </Section>
 
         </div>
