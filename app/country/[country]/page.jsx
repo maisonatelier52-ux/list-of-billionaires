@@ -7,45 +7,70 @@ import BillionaireTreemap from "@/app/components/treemap";
 const SITE_URL = "https://www.list-of-billionaires.com";
 
 function normalize(str) {
-  return str.toLowerCase().replace(/\s+/g, "-");
+  return str?.toLowerCase().replace(/\s+/g, "-");
+}
+
+function formatName(str) {
+  return str
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (l) => l.toUpperCase());
 }
 
 export async function generateMetadata({ params }) {
   const { country } = await params;
 
-  const decodedCountry = country.toLowerCase().replace(/-/g, " ");
-  const capitalizedCountry = decodedCountry.charAt(0).toUpperCase() + decodedCountry.slice(1);
+  const decodedCountry = country.toLowerCase();
+  const countryName = formatName(decodedCountry);
 
-  const filteredData = data.filter((person) => {
-    return normalize(person.Country) === country.toLowerCase();
-  });
+  const filteredData = data.filter(
+    (person) => normalize(person.Country) === decodedCountry
+  );
 
   if (filteredData.length === 0) {
     return {
-      title: "Country Not Found",
+      title: "Country Not Found | List of Billionaires",
+      robots: { index: false, follow: false },
     };
   }
 
-  const title = `Richest Billionaires in ${capitalizedCountry} | Top Wealth`;
-  const description = `Explore the ${filteredData.length} richest billionaires in ${capitalizedCountry}. Rankings, net worth, and profiles of the wealthiest individuals.`;
+  const title = `Richest Billionaires in ${countryName} (Ranked)`;
+  const description = `Discover the ${filteredData.length} richest billionaires in ${countryName}. Explore rankings, net worth, and profiles of the wealthiest individuals.`;
+
+  const url = `${SITE_URL}/country/${country}`;
 
   return {
     title,
     description,
+
     alternates: {
-      canonical: `${SITE_URL}/country/${country}`,
+      canonical: url,
     },
+
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/country/${country}`,
+      url,
       siteName: "List of Billionaires",
       type: "website",
+      images: [
+        {
+          url: `${SITE_URL}/og-image.jpg`,
+          width: 1200,
+          height: 630,
+        },
+      ],
     },
+
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [`${SITE_URL}/og-image.jpg`],
+    },
+
+    robots: {
+      index: true,
+      follow: true,
     },
   };
 }
@@ -66,16 +91,23 @@ export default async function CategoryPage({ params }) {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: `Billionaires in ${decodedCountry.replace(/-/g, " ")}`,
-    itemListOrder: "https://schema.org/ItemListOrderDescending",
-    numberOfItems: filteredData.length,
-    itemListElement: filteredData.slice(0, 100).map((person, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      url: `${SITE_URL}/${normalize(person.Name)}`,
-      name: person.Name,
-    })),
+    "@type": "CollectionPage",
+    name: `Billionaires in ${formatName(country)}`,
+    url: `${SITE_URL}/country/${country}`,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListOrder: "https://schema.org/ItemListOrderDescending",
+      numberOfItems: filteredData.length,
+      itemListElement: filteredData.slice(0, 100).map((person, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Person",
+          name: person.Name,
+          url: `${SITE_URL}/billionaire/${normalize(person.Name)}`,
+        },
+      })),
+    },
   };
 
   return (

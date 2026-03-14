@@ -14,7 +14,8 @@ export async function generateMetadata({ params }) {
 
   const decodedCategory = category.toLowerCase();
   const categoryName = decodedCategory.replace(/-/g, " ");
-  const capitalizedCategoryName = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
+  const capitalizedCategoryName =
+    categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
 
   let filteredData;
 
@@ -27,50 +28,67 @@ export async function generateMetadata({ params }) {
           (a.Total_Donated_USD_Billion || 0)
       );
   } else {
-    filteredData = data.filter((person) => {
-      return (
+    filteredData = data.filter(
+      (person) =>
         normalize(person.Industry) === decodedCategory ||
         normalize(person.Sex) === decodedCategory
-      );
-    });
+    );
   }
 
   if (filteredData.length === 0) {
     return {
-      title: "Category Not Found",
+      title: "Category Not Found | List of Billionaires",
+      robots: { index: false, follow: false },
     };
   }
 
-  let title = '';
-  let description = '';
+  let title;
+  let description;
 
   if (decodedCategory === "philanthropists") {
-    title = `Top Philanthropists | Billionaires`;
-    description = `See the top philanthropists ranked by total donations. Updated rankings of the world's most generous billionaires.`;
+    title = `Top Philanthropists in the World (Ranked)`;
+    description =
+      "Explore the world's top billionaire philanthropists ranked by total donations and charitable impact.";
   } else {
-    title = `Richest in ${capitalizedCategoryName} | Billionaires`;
-    description = `See the richest ${capitalizedCategoryName} billionaires ranked by net worth. Updated rankings of the world's wealthiest individuals in ${categoryName}.`;
+    title = `Richest ${capitalizedCategoryName} Billionaires (Ranked)`;
+    description = `Discover the richest ${capitalizedCategoryName} billionaires ranked by net worth. Updated global billionaire rankings.`;
   }
+
+  const url = `${SITE_URL}/categories/${category}`;
+
   return {
     title,
     description,
 
     alternates: {
-      canonical: `${SITE_URL}/${category}`,
+      canonical: url,
     },
 
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/${category}`,
+      url,
       siteName: "List of Billionaires",
       type: "website",
+      images: [
+        {
+          url: `${SITE_URL}/og-image.jpg`,
+          width: 1200,
+          height: 630,
+        },
+      ],
     },
 
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [`${SITE_URL}/og-image.jpg`],
+    },
+
+    robots: {
+      index: true,
+      follow: true,
     },
   };
 }
@@ -108,16 +126,26 @@ export default async function CategoryPage({ params }) {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: `${decodedCategory.replace(/-/g, " ")} Billionaires`,
-    itemListOrder: "https://schema.org/ItemListOrderDescending",
-    numberOfItems: filteredData.length,
-    itemListElement: filteredData.slice(0, 100).map((person, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      url: `${SITE_URL}/${normalize(person.Name)}`,
-      name: person.Name,
-    })),
+    "@type": "CollectionPage",
+    name:
+      decodedCategory === "philanthropists"
+        ? "Top Philanthropists"
+        : `${decodedCategory.replace(/-/g, " ")} Billionaires`,
+    url: `${SITE_URL}/categories/${category}`,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListOrder: "https://schema.org/ItemListOrderDescending",
+      numberOfItems: filteredData.length,
+      itemListElement: filteredData.slice(0, 100).map((person, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Person",
+          name: person.Name,
+          url: `${SITE_URL}/billionaire/${normalize(person.Name)}`,
+        },
+      })),
+    },
   };
 
   return (

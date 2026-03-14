@@ -5,21 +5,25 @@ import BillionairesTable from "../components/BillionairesEverLivedTable";
 const SITE_URL = "https://www.list-of-billionaires.com";
 
 export const metadata = {
-  title: "Richest People Who Ever Lived | Historical Billionaires Ranking",
-  description: "Explore the richest individuals in human history, from ancient emperors to modern billionaires. Rankings of historical wealth including monarchs, conquerors, and entrepreneurs.",
+  title: "Richest People Who Ever Lived (Historical Billionaires Ranking)",
+  description:
+    "Explore the richest individuals in human history—from ancient emperors like Mansa Musa to modern billionaires. Historical wealth rankings with estimated net worth comparisons.",
   keywords: [
     "richest people ever lived",
+    "wealthiest people in history",
     "historical billionaires",
-    "wealth history",
-    "ancient emperors wealth",
-    "kings net worth"
+    "mansa musa wealth",
+    "richest kings in history"
   ],
+
   alternates: {
     canonical: `${SITE_URL}/billionaires-ever-lived`,
   },
+
   openGraph: {
     title: "Richest People Who Ever Lived | Historical Billionaires",
-    description: "A comprehensive ranking of the wealthiest individuals throughout history, from emperors to modern billionaires.",
+    description:
+      "A ranking of the wealthiest individuals in human history, from emperors and kings to modern billionaires.",
     url: `${SITE_URL}/billionaires-ever-lived`,
     siteName: "List of Billionaires",
     images: [
@@ -30,35 +34,45 @@ export const metadata = {
         alt: "Richest People in History",
       },
     ],
-    type: "website",
+    type: "article",
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Richest People Who Ever Lived",
-    description: "Historical ranking of the wealthiest individuals in human history.",
+    description:
+      "Discover the wealthiest individuals in human history—from ancient emperors to modern billionaires.",
     images: [`${SITE_URL}/ever-lived/billionaires-ever-lived.jpeg`],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
 export default function Page() {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ItemList",
+    "@type": "CollectionPage",
     name: "Richest People Who Ever Lived",
-    description: "A ranking of the wealthiest individuals in human history, from ancient emperors to modern billionaires.",
+    description:
+      "Ranking of the wealthiest individuals in human history, including emperors, monarchs, and modern billionaires.",
     url: `${SITE_URL}/billionaires-ever-lived`,
-    numberOfItems: data.length,
-    itemListElement: data.slice(0, 10).map((person, index) => ({
-      "@type": "Person",
-      position: index + 1,
-      name: person.Name,
-      description: person.Description,
-      netWorth: person.Net_Worth ? {
-        "@type": "MonetaryAmount",
-        currency: "USD",
-        value: person.Net_Worth,
-      } : undefined,
-    })),
+    mainEntity: {
+      "@type": "ItemList",
+      itemListOrder: "https://schema.org/ItemListOrderDescending",
+      itemListElement: data.billionaires.map((person, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Person",
+          name: person.Name,
+          description: person.Description,
+          url: `${SITE_URL}/billionaires-ever-lived/${person.Slug}`,
+        },
+      })),
+    },
   };
 
   return (
