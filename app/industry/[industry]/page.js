@@ -33,13 +33,13 @@ export async function generateMetadata({ params }) {
     description,
 
     alternates: {
-      canonical: `${SITE_URL}/${industry}`,
+      canonical: `${SITE_URL}/industry/${industry}`,
     },
 
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/${industry}`,
+      url: `${SITE_URL}/industry/${industry}`,
       siteName: "List of Billionaires",
       type: "website",
     },
@@ -78,9 +78,31 @@ export default async function CategoryPage({ params }) {
     itemListElement: filteredData.slice(0, 100).map((person, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      url: `${SITE_URL}/${normalize(person.Name)}`,
-      name: person.Name,
-    })),
+      item: {
+        "@type": "Person",
+        name: person.Name,
+        url: `${SITE_URL}/${normalize(person.Name)}`,
+      },
+    }))
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: formatName(industry),
+        item: `${SITE_URL}/industry/${industry}`,
+      },
+    ],
   };
 
   return (

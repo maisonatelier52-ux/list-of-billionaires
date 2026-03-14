@@ -91,6 +91,31 @@ export default async function SpecialPage({ params }) {
 
   const countries = new Set(filteredData.map((p) => p.Country)).size;
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Wealth Categories",
+        item: `${SITE_URL}/special`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: pageTitle,
+        item: `${SITE_URL}/special/${range}`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
 
@@ -106,18 +131,27 @@ export default async function SpecialPage({ params }) {
             url: `${SITE_URL}/special/${range}`,
             numberOfItems: filteredData.length,
             itemListElement: filteredData.slice(0, 10).map((person, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            item: {
               "@type": "Person",
-              position: index + 1,
               name: person.Name,
+              url: `${SITE_URL}/${person.slug}`,
               netWorth: {
                 "@type": "MonetaryAmount",
                 currency: "USD",
                 value: person.Net_Worth_USD_Billion,
               },
               nationality: person.Country,
-            })),
+            },
+          }))
           }),
         }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
 
       <div className="container mx-auto px-4 py-10">

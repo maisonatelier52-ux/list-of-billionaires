@@ -58,6 +58,31 @@ export default async function BillionairEverPage({ params }) {
 
   const related = data.billionaires.filter(c => c.slug !== slug).slice(0, 3);
 
+  const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: SITE_URL,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Historical Billionaires",
+      item: `${SITE_URL}/billionaires-ever-lived`,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: billionaire.name,
+      item: `${SITE_URL}/billionaires-ever-lived/${slug}`,
+    },
+  ],
+};
+
   return (
     <main className="bg-black text-gray-200 min-h-screen">
 

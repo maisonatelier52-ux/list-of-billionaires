@@ -65,16 +65,48 @@ export default async function CategoryPage({ params }) {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: `Billionaires in ${decodedCategory.replace(/-/g, " ")}`,
-    itemListOrder: "https://schema.org/ItemListOrderDescending",
-    numberOfItems: filteredData.length,
-    itemListElement: filteredData.slice(0, 100).map((person, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      url: `${SITE_URL}/${normalize(person.Name)}`,
-      name: person.Name,
-    })),
+    "@type": "CollectionPage",
+    name: `Billionaires in ${formatName(continent)}`,
+    url: `${SITE_URL}/region/${continent}`,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListOrder: "https://schema.org/ItemListOrderDescending",
+      numberOfItems: filteredData.length,
+      itemListElement: filteredData.slice(0, 100).map((person, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Person",
+          name: person.Name,
+          url: `${SITE_URL}/${normalize(person.Name)}`,
+        },
+      })),
+    },
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Regions",
+        item: `${SITE_URL}/region`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: formatName(continent),
+        item: `${SITE_URL}/region/${continent}`,
+      },
+    ],
   };
 
   return (
@@ -82,9 +114,12 @@ export default async function CategoryPage({ params }) {
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
 
       <div className="max-w-7xl mx-auto space-y-8">

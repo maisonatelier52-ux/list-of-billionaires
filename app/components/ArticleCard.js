@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function ArticleCard({ title, href, image, description }) {
   return (
     <a
@@ -5,11 +7,13 @@ export default function ArticleCard({ title, href, image, description }) {
       className="group block overflow-hidden rounded-lg shadow hover:shadow-lg transition-shadow"
     >
       {image && (
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-80 object-cover group-hover:scale-105 transition-transform"
-        />
+      <Image
+        src={image}
+        alt={title}
+        width={800}
+        height={320}
+        className="w-full h-80 object-cover group-hover:scale-105 transition-transform"
+      />
       )}
       <div className="p-4">
         <h3 className="text-lg font-semibold text-gray-300">

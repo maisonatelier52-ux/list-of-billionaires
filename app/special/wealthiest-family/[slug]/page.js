@@ -79,6 +79,61 @@ export default async function FamilyPage({ params }) {
         f.slug !== family.slug
     )
     .slice(0, 3);
+  
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: family.family,
+    url: `${SITE_URL}/special/wealthiest-family/${family.slug}`,
+    logo: `${SITE_URL}/family/${family.image}`,
+    description: `${family.family} is one of the richest family dynasties with an estimated net worth of $${family.estimated_wealth_usd_billion} billion.`,
+    foundingDate: family.founded_year,
+    founder: {
+      "@type": "Person",
+      name: family.founded_by,
+    },
+    location: {
+      "@type": "Country",
+      name: family.country,
+    },
+    industry: family.industry,
+    netWorth: {
+      "@type": "MonetaryAmount",
+      currency: "USD",
+      value: family.estimated_wealth_usd_billion * 1000000000,
+    },
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Special Rankings",
+        item: `${SITE_URL}/special`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Wealthiest Families",
+        item: `${SITE_URL}/special/wealthiest-family`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: family.family,
+        item: `${SITE_URL}/special/wealthiest-family/${family.slug}`,
+      },
+    ],
+  };
 
   return (
     <main className="bg-black text-gray-200 min-h-screen">
@@ -87,35 +142,26 @@ export default async function FamilyPage({ params }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: family.family,
-            description: `${family.family} is a wealthy family dynasty with an estimated net worth of $${family.estimated_wealth_usd_billion} billion from ${family.industry}.`,
-            foundingLocation: {
-              "@type": "Country",
-              name: family.country,
-            },
-            industry: family.industry,
-            netWorth: {
-              "@type": "MonetaryAmount",
-              currency: "USD",
-              value: family.estimated_wealth_usd_billion,
-            },
-          }),
+          __html: JSON.stringify(jsonLd),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbLd),
         }}
       />
 
       {/* HERO IMAGE */}
-            <div className="w-full h-[500px] relative overflow-hidden">
-              <Image
-                src={`/family/${family.image_banner}`}
-                alt={family.family}
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black"></div>
-            </div>
+      <div className="w-full h-[500px] relative overflow-hidden">
+        <Image
+          src={`/family/${family.image_banner}`}
+          alt={family.family}
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black"></div>
+      </div>
 
       {/* MAIN CONTENT */}
       <div className="max-w-6xl mx-auto px-6 md:flex md:gap-12">

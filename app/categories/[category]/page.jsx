@@ -30,7 +30,6 @@ export async function generateMetadata({ params }) {
   } else {
     filteredData = data.filter(
       (person) =>
-        normalize(person.Industry) === decodedCategory ||
         normalize(person.Sex) === decodedCategory
     );
   }
@@ -116,7 +115,6 @@ export default async function CategoryPage({ params }) {
   } else {
     filteredData = data.filter((person) => {
       return (
-        normalize(person.Industry) === decodedCategory ||
         normalize(person.Sex) === decodedCategory
       );
     });

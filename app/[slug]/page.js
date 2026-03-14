@@ -86,6 +86,25 @@ export default async function PersonPage({ params }) {
   )
   .slice(0, 3);
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: person.Name,
+        item: `${SITE_URL}/${slug}`,
+      },
+    ],
+  };
+
   return (
     <main className="bg-black text-gray-200 min-h-screen">
 
@@ -109,6 +128,13 @@ export default async function PersonPage({ params }) {
             },
             sameAs: person.wikipedia_url || undefined,
           }),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbLd),
         }}
       />
 
