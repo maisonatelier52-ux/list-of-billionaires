@@ -4,8 +4,50 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import BillionaireTreemap from "@/app/components/treemap";
 
+const SITE_URL = "https://www.list-of-billionaires.com";
+
 function normalize(str) {
   return str.toLowerCase().replace(/\s+/g, "-");
+}
+
+export async function generateMetadata({ params }) {
+  const { continent } = await params;
+
+  const decodedContinent = continent.toLowerCase().replace(/-/g, " ");
+  const capitalizedContinent = decodedContinent.charAt(0).toUpperCase() + decodedContinent.slice(1);
+
+  const filteredData = data.filter((person) => {
+    return normalize(person.Continent) === continent.toLowerCase();
+  });
+
+  if (filteredData.length === 0) {
+    return {
+      title: "Continent Not Found",
+    };
+  }
+
+  const title = `Richest Billionaires in ${capitalizedContinent} | Top Wealth`;
+  const description = `Explore the ${filteredData.length} richest billionaires in ${capitalizedContinent}. Rankings, net worth, and profiles of the wealthiest individuals.`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${SITE_URL}/region/${continent}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/region/${continent}`,
+      siteName: "List of Billionaires",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
 }
 
 export default async function CategoryPage({ params }) {
@@ -21,8 +63,29 @@ export default async function CategoryPage({ params }) {
 
   if (filteredData.length === 0) return notFound();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `Billionaires in ${decodedCategory.replace(/-/g, " ")}`,
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: filteredData.length,
+    itemListElement: filteredData.slice(0, 100).map((person, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `${SITE_URL}/${normalize(person.Name)}`,
+      name: person.Name,
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-zinc-950 via-black to-zinc-900 text-white p-6 md:p-12">
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd),
+        }}
+      />
 
       <div className="max-w-7xl mx-auto space-y-8">
 

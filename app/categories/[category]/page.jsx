@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import BillionaireTreemap from "@/app/components/treemap";
 import PhilanthropistTreemap from "@/app/components/PhilanthropistTreemap";
 import PhilanthropistsTable from "@/app/components/PhilanthropistsTable";
+import PhilanthropyStats from "@/app/components/PhilanthropistStats";
 
 const SITE_URL = "https://www.list-of-billionaires.com";
 
@@ -148,7 +149,7 @@ export default async function CategoryPage({ params }) {
           </h1>
           <p className="text-zinc-400 mt-2">
             {decodedCategory === "philanthropists"
-              ? `${filteredData.length} Philanthropists`
+              ? ``
               : `${filteredData.length} Billionaires Found`
             }
           </p>
@@ -156,7 +157,10 @@ export default async function CategoryPage({ params }) {
 
         <div className="min-h-screen bg-black p-10">
           {decodedCategory === "philanthropists" ? (
+            <div className="space-y-10">
+            <PhilanthropyStats data={filteredData} />
             <PhilanthropistTreemap data={filteredData} />
+            </div>
           ) : (
             <BillionaireTreemap data={filteredData} />
           )}

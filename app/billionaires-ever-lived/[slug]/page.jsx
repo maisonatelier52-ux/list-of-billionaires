@@ -3,6 +3,52 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+const SITE_URL = "https://www.list-of-billionaires.com";
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+
+  const billionaire = data.billionaires.find((c) => c.slug === slug);
+
+  if (!billionaire) {
+    return {
+      title: "Billionaire Not Found",
+    };
+  }
+
+  const title = `${billionaire.name} - Richest Person Who Ever Lived (#${billionaire.rank})`;
+  const description = billionaire.description || `${billionaire.name} is ranked #${billionaire.rank} among the richest people who ever lived with an estimated net worth of $${billionaire.net_worth || 'N/A'}.`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${SITE_URL}/billionaires-ever-lived/${slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/billionaires-ever-lived/${slug}`,
+      siteName: "List of Billionaires",
+      images: [
+        {
+          url: billionaire.image,
+          width: 1200,
+          height: 630,
+          alt: billionaire.name,
+        },
+      ],
+      type: "profile",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [billionaire.image],
+    },
+  };
+}
+
 export default async function BillionairEverPage({ params }) {
   const { slug } = await params;
 
@@ -14,6 +60,26 @@ export default async function BillionairEverPage({ params }) {
 
   return (
     <main className="bg-black text-gray-200 min-h-screen">
+
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: billionaire.name,
+            description: billionaire.description,
+            image: billionaire.image,
+            position: billionaire.rank,
+            netWorth: billionaire.net_worth ? {
+              "@type": "MonetaryAmount",
+              currency: "USD",
+              value: billionaire.net_worth,
+            } : undefined,
+          }),
+        }}
+      />
 
       {/* HERO IMAGE */}
       <div className="w-full h-[500px] relative mb-20 overflow-hidden">

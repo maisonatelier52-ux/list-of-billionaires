@@ -178,6 +178,18 @@ export default function Navbar() {
             <SidebarLink href="/categories/philanthropists">
               Top Philanthropists
             </SidebarLink>
+            <SidebarLink href="/special/wealthiest-family">
+              Wealthiest Families
+            </SidebarLink>
+            <SidebarLink href="/special/wealth-range-100b-plus">
+              Wealth Range: $100B+
+            </SidebarLink>
+            <SidebarLink href="/special/wealth-range-40-100b">
+              Wealth Range: $40B–$100B
+            </SidebarLink>
+            <SidebarLink href="/special/wealth-range-1-40b">
+              Wealth Range: Under $40B
+            </SidebarLink>
           </Section>
 
         </div>

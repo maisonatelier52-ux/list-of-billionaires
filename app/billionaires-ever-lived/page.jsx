@@ -2,15 +2,73 @@ import Image from "next/image";
 import data from "@/data/billionaires-ever-lived.json";
 import BillionairesTable from "../components/BillionairesEverLivedTable";
 
+const SITE_URL = "https://www.list-of-billionaires.com";
+
 export const metadata = {
-  title: "Richest People Who Ever Lived",
-  description:
-    "A ranking of the richest people in history including emperors, kings, industrialists, and modern billionaires.",
+  title: "Richest People Who Ever Lived | Historical Billionaires Ranking",
+  description: "Explore the richest individuals in human history, from ancient emperors to modern billionaires. Rankings of historical wealth including monarchs, conquerors, and entrepreneurs.",
+  keywords: [
+    "richest people ever lived",
+    "historical billionaires",
+    "wealth history",
+    "ancient emperors wealth",
+    "kings net worth"
+  ],
+  alternates: {
+    canonical: `${SITE_URL}/billionaires-ever-lived`,
+  },
+  openGraph: {
+    title: "Richest People Who Ever Lived | Historical Billionaires",
+    description: "A comprehensive ranking of the wealthiest individuals throughout history, from emperors to modern billionaires.",
+    url: `${SITE_URL}/billionaires-ever-lived`,
+    siteName: "List of Billionaires",
+    images: [
+      {
+        url: `${SITE_URL}/ever-lived/billionaires-ever-lived.jpeg`,
+        width: 1200,
+        height: 630,
+        alt: "Richest People in History",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Richest People Who Ever Lived",
+    description: "Historical ranking of the wealthiest individuals in human history.",
+    images: [`${SITE_URL}/ever-lived/billionaires-ever-lived.jpeg`],
+  },
 };
 
 export default function Page() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Richest People Who Ever Lived",
+    description: "A ranking of the wealthiest individuals in human history, from ancient emperors to modern billionaires.",
+    url: `${SITE_URL}/billionaires-ever-lived`,
+    numberOfItems: data.length,
+    itemListElement: data.slice(0, 10).map((person, index) => ({
+      "@type": "Person",
+      position: index + 1,
+      name: person.Name,
+      description: person.Description,
+      netWorth: person.Net_Worth ? {
+        "@type": "MonetaryAmount",
+        currency: "USD",
+        value: person.Net_Worth,
+      } : undefined,
+    })),
+  };
+
   return (
     <main className="bg-black text-zinc-200 min-h-screen">
+
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* HERO IMAGE */}
       <div className="relative w-full h-[420px] md:h-[500px] overflow-hidden">

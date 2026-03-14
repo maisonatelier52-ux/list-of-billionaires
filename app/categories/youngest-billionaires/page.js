@@ -27,10 +27,42 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 
+const SITE_URL = "https://www.list-of-billionaires.com";
+
 export const metadata = {
-  title: "Youngest Billionaires in the World",
-  description:
-    "Discover the youngest billionaires globally, their wealth, industry and background.",
+  title: "Youngest Billionaires in the World 2026 | Richest Under 30",
+  description: "Discover the youngest billionaires globally in 2026. Rankings of the wealthiest individuals under 30, their industries, and how they built their fortunes.",
+  keywords: [
+    "youngest billionaires",
+    "richest under 30",
+    "young entrepreneurs",
+    "teen billionaires",
+    "young wealth"
+  ],
+  alternates: {
+    canonical: `${SITE_URL}/categories/youngest-billionaires`,
+  },
+  openGraph: {
+    title: "Youngest Billionaires in the World 2026",
+    description: "Meet the youngest members of the global billionaire class and their remarkable wealth stories.",
+    url: `${SITE_URL}/categories/youngest-billionaires`,
+    siteName: "List of Billionaires",
+    images: [
+      {
+        url: `${SITE_URL}/background.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Youngest Billionaires",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Youngest Billionaires in the World 2026",
+    description: "Discover the youngest billionaires and their wealth stories.",
+    images: [`${SITE_URL}/background.jpg`],
+  },
 };
 
 /* INDUSTRY ICON MAP */
@@ -57,8 +89,36 @@ export default function YoungestBillionairesPage() {
     .sort((a, b) => a.Age - b.Age)
     .slice(0, 10);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Youngest Billionaires in the World",
+    description: "Ranking of the youngest billionaires globally by age.",
+    url: `${SITE_URL}/categories/youngest-billionaires`,
+    numberOfItems: billionaires.length,
+    itemListElement: billionaires.map((person, index) => ({
+      "@type": "Person",
+      position: index + 1,
+      name: person.Name,
+      age: person.Age,
+      netWorth: {
+        "@type": "MonetaryAmount",
+        currency: "USD",
+        value: person.Net_Worth_USD_Billion,
+      },
+      nationality: person.Country,
+      jobTitle: person.Industry,
+    })),
+  };
+
   return (
     <main className="bg-black text-zinc-200 min-h-screen">
+
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* HERO */}
 

@@ -89,6 +89,29 @@ export default async function PersonPage({ params }) {
   return (
     <main className="bg-black text-gray-200 min-h-screen">
 
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: person.Name,
+            description: `${person.Name} is a billionaire with a net worth of $${person.Net_Worth_USD_Billion} billion, ranked #${person.Rank} globally.`,
+            image: person.image,
+            nationality: person.Country,
+            jobTitle: person.Industry,
+            knowsAbout: person.Source_of_Wealth,
+            address: {
+              "@type": "PostalAddress",
+              addressCountry: person.Country,
+              addressLocality: person.City,
+            },
+            sameAs: person.wikipedia_url || undefined,
+          }),
+        }}
+      />
+
       {/* HERO IMAGE */}
       <div className="w-full h-[500px] relative overflow-hidden">
         <Image

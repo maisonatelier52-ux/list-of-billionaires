@@ -2,14 +2,73 @@ import Image from "next/image";
 import data from "@/data/fictional-characters.json";
 import FictionalTable from "../components/FictionalTable";
 
+const SITE_URL = "https://www.list-of-billionaires.com";
+
 export const metadata = {
-  title: "Richest Fictional Characters",
-  description: "A list of fictional characters ranked by estimated net worth.",
+  title: "Richest Fictional Characters | Billionaire Characters Ranking",
+  description: "Explore the wealthiest fictional characters from movies, books, and comics. Rankings of billionaire characters with estimated net worth and wealth sources.",
+  keywords: [
+    "richest fictional characters",
+    "billionaire characters",
+    "wealthy superheroes",
+    "fictional billionaires",
+    "character net worth"
+  ],
+  alternates: {
+    canonical: `${SITE_URL}/fictional`,
+  },
+  openGraph: {
+    title: "Richest Fictional Characters | Billionaire Characters",
+    description: "Discover the wealthiest characters from fiction, from dragons to superheroes.",
+    url: `${SITE_URL}/fictional`,
+    siteName: "List of Billionaires",
+    images: [
+      {
+        url: `${SITE_URL}/fictional/fictional-billionaires-hero2.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Richest Fictional Characters",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Richest Fictional Characters",
+    description: "Ranking of the wealthiest fictional characters ever created.",
+    images: [`${SITE_URL}/fictional/fictional-billionaires-hero2.jpg`],
+  },
 };
 
 export default function FictionalCharactersPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Richest Fictional Characters",
+    description: "Ranking of the wealthiest fictional characters by estimated net worth.",
+    url: `${SITE_URL}/fictional`,
+    numberOfItems: data.length,
+    itemListElement: data.slice(0, 10).map((character, index) => ({
+      "@type": "Person",
+      position: index + 1,
+      name: character.Name,
+      description: character.Description,
+      netWorth: character.Net_Worth ? {
+        "@type": "MonetaryAmount",
+        currency: "USD",
+        value: character.Net_Worth,
+      } : undefined,
+    })),
+  };
+
   return (
     <main className="bg-black text-zinc-200 min-h-screen">
+
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* HERO IMAGE */}
       <div className="relative w-full h-[500px] md:h-[500px] overflow-hidden">

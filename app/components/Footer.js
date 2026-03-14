@@ -4,19 +4,10 @@ import Link from "next/link";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const categories = [
-  "Technology",
-  "Finance",
-  "Fashion & Retail",
-  "Manufacturing",
-  "Logistics",
-  "Metals & Mining"
-];
-
-const rankings = [
-  { label: "USA", href: "/categories/usa" },
   { label: "Female", href: "/categories/female" },
-  { label: "Top 10", href: "/categories/top-10" },
   { label: "Youngest Billionaires", href: "/categories/youngest-billionaires" },
+  { label: "Philanthropists", href: "/categories/philanthropists" },
+  { label: "Wealthiest Family", href: "/special/wealthiest-family" },
 ];
 
 const continental = [
@@ -27,14 +18,6 @@ const continental = [
   { label: "Africa", href: "/region/africa" },
   { label: "Oceania", href: "/region/oceania" },
 ];
-
-function slugify(text) {
-  return text
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/\s+/g, "-")
-    .replace(/[^\w-]+/g, "");
-}
 
 const quickLinks = [
   { label: "Fictional Characters", href: "/fictional" },
@@ -87,7 +70,7 @@ export default function Footer() {
         </div>
 
         {/* BOTTOM SECTION */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 pt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pt-10">
 
           {/* Categories */}
           <div>
@@ -95,26 +78,7 @@ export default function Footer() {
               Categories
             </h3>
             <ul className="space-y-2 text-sm">
-              {categories.map((cat) => (
-                <li key={cat}>
-                  <Link
-                    href={`/categories/${slugify(cat)}`}
-                    className="hover:text-gray-400 transition-colors px-2 py-1 rounded"
-                  >
-                    {cat}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Rankings */}
-          <div>
-            <h3 className="font-semibold mb-4 uppercase text-sm tracking-wider">
-              Rankings
-            </h3>
-            <ul className="space-y-2 text-sm">
-              {rankings.map(({ label, href }) => (
+              {categories.map(({ label, href }) => (
                 <li key={href}>
                   <Link
                     href={href}

@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+const SITE_URL = "https://www.list-of-billionaires.com";
+
 export function generateStaticParams() {
   return data.map((character) => ({
     slug: character.slug,
@@ -15,9 +17,36 @@ export async function generateMetadata({ params }) {
 
   if (!character) return {};
 
+  const title = `${character.name} Net Worth | Richest Fictional Characters`;
+  const description = `Estimated net worth, background and details about ${character.name}${character.alias ? ` (${character.alias})` : ''} from the ${character.universe} universe.`;
+
   return {
-    title: `${character.name} Net Worth | Fictional Characters`,
-    description: `Estimated net worth, background and details about ${character.name} (${character.alias}) from the ${character.universe} universe.`,
+    title,
+    description,
+    alternates: {
+      canonical: `${SITE_URL}/fictional/${slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/fictional/${slug}`,
+      siteName: "List of Billionaires",
+      images: [
+        {
+          url: character.image,
+          width: 1200,
+          height: 630,
+          alt: character.name,
+        },
+      ],
+      type: "profile",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [character.image],
+    },
   };
 }
 
@@ -31,6 +60,29 @@ export default async function CharacterPage({ params }) {
 
   return (
     <main className="bg-black text-gray-200 min-h-screen">
+
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: character.name,
+            alternateName: character.alias,
+            description: character.description,
+            image: character.image,
+            jobTitle: character.occupation,
+            creator: character.created_by,
+            netWorth: {
+              "@type": "MonetaryAmount",
+              currency: "USD",
+              value: character.net_worth_billion,
+            },
+            sameAs: character.wiki_url || undefined,
+          }),
+        }}
+      />
 
         {/* HERO IMAGE BLENDING INTO BLACK */}
         <div className="w-full h-[500px] relative mb-20 overflow-hidden">
