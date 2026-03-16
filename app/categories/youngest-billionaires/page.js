@@ -146,6 +146,41 @@ export default function YoungestBillionairesPage() {
         </div>
       </div>
 
+      {/* PAGE DESCRIPTION */}
+      <div className="max-w-5xl mx-auto px-6 py-14 text-zinc-300 space-y-6">
+
+        <p>
+          The youngest billionaires in the world represent a new generation of extreme
+          wealth. Some inherited fortunes from powerful global business families,
+          while others built successful companies at a remarkably young age.
+          These individuals demonstrate how entrepreneurship, technology,
+          innovation, and family enterprises continue to create massive wealth
+          across generations.
+        </p>
+
+        <p>
+          Many young billionaires come from industries such as technology,
+          fashion and retail, finance, manufacturing, and logistics.
+          In recent years, the rise of tech startups, social media platforms,
+          and digital marketplaces has allowed young founders to accumulate
+          enormous wealth faster than ever before.
+        </p>
+
+        <p>
+          At the same time, a large portion of the world's youngest billionaires
+          are heirs to global luxury brands, investment firms, or industrial
+          empires. These heirs often take leadership roles in family businesses
+          while also expanding into new sectors such as venture capital,
+          sustainability, and emerging technologies.
+        </p>
+
+        <p>
+          This ranking highlights the top 10 youngest billionaires globally.
+          The list offers insight into where the next generation of
+          billion-dollar fortunes is being created and managed.
+        </p>
+
+      </div>
 
       {/* LIST */}
 

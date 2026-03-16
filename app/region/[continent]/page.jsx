@@ -66,7 +66,7 @@ export default async function CategoryPage({ params }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: `Billionaires in ${formatName(continent)}`,
+    name: `Billionaires in ${continent}`,
     url: `${SITE_URL}/region/${continent}`,
     mainEntity: {
       "@type": "ItemList",
@@ -103,7 +103,7 @@ export default async function CategoryPage({ params }) {
       {
         "@type": "ListItem",
         position: 3,
-        name: formatName(continent),
+        name: continent,
         item: `${SITE_URL}/region/${continent}`,
       },
     ],

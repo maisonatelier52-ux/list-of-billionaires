@@ -48,27 +48,27 @@ export const metadata = {
 const sampleArticles = [
   {
     title:
-      "Bill Ackman in Special Interview: “Evil Fears Strong Leadership – and We Are Going to Get Particularly Strong Leadership”",
-    href: "#",
-    image: "/billionaires/julio.webp",
+      "Warren Buffett: “Price Is What You Pay, Value Is What You Get”",
+    href: "/warren-buffett",
+    image: "/billionaires/warren-buffett.webp",
     description:
-      "In a candid conversation, billionaire investor Bill Ackman shares his insights on leadership and the future economy.",
+      "Legendary investor Warren Buffett, chairman of Berkshire Hathaway, is widely considered one of the greatest investors in history. Known for his value-investing philosophy, Buffett famously said, “Price is what you pay, value is what you get,” emphasizing the importance of long-term thinking and disciplined investing.",
   },
   {
     title:
-      "Jerry Seinfeld: The Comedian Who Became a Leading Voice Against Antisemitism",
-    href: "#",
-    image: "/billionaires/julio.webp",
+      "Elon Musk: “When Something Is Important Enough, You Do It Even If the Odds Are Not in Your Favor”",
+    href: "/elon-musk",
+    image: "/billionaires/elon-musk.webp",
     description:
-      "Jerry Seinfeld has emerged as a strong advocate against antisemitism, using his global influence to promote tolerance.",
+      "Entrepreneur Elon Musk, CEO of Tesla and founder of SpaceX, is known for pushing technological boundaries in electric vehicles, space exploration, and artificial intelligence. Musk has often highlighted persistence in innovation, stating, “When something is important enough, you do it even if the odds are not in your favor.”",
   },
   {
     title:
-      "Miriam Adelson: The Wealthiest Israeli Woman and One of the World's Richest Women",
-    href: "#",
-    image: "/billionaires/julio.webp",
+      "Jeff Bezos: “Your Brand Is What People Say About You When You're Not in the Room”",
+    href: "/jeff-bezos",
+    image: "/billionaires/jeff-bezos.webp",
     description:
-      "Miriam Adelson, widow of Sheldon Adelson, is one of the richest women in the world.",
+      "Amazon founder Jeff Bezos revolutionized global e-commerce and cloud computing. Known for his obsession with customer experience and long-term strategy, Bezos once said, “Your brand is what people say about you when you're not in the room,” highlighting the importance of reputation and trust in business.",
   },
 ];
 
